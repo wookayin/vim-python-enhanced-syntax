@@ -64,10 +64,10 @@ hi! def link    pythonCallComma         pythonParamsDelim
 syn match       pythonCommaError        contained /,/ extend display
 hi! link        pythonCommaError        Error
 
-syn cluster     pythonCallArgument      contains=pythonCall,pythonCallRegion,
+syn cluster     pythonCallArgument      contains=pythonComment,pythonCall,pythonCallRegion,
                                                   \pythonOperator,pythonExtraOperator,pythonLambdaExpr,pythonRepeat,pythonConditional,
                                                   \pythonBuiltinObj,pythonBuiltinType,pythonBultinFunc,pythonConstant,
-                                                  \pythonString,pythonNumber,pythonBrackets,pythonSelf,pythonDocstring,pythonComment
+                                                  \pythonString,pythonNumber,pythonBrackets,pythonSelf,pythonDocstring,
                                                   \skipwhite
 
 " Highlight keyword argument in python function call
