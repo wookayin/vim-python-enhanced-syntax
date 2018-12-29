@@ -49,9 +49,34 @@ syn match       pythonBrackets          "{[(|)]}" contained skipwhite
 " Python function call (arguments) {{{
 " ====================================
 
+function! s:convert_syntax_keyword_containedin(syntaxGroup, syntaxCallGroup)
+    " https://vi.stackexchange.com/questions/18408/ (courtesy of @user938271)
+    let l:rule = execute(printf('syn list %s', a:syntaxGroup))
+    let l:rule = matchstr(l:rule, 'xxx\zs.*')
+    " if <xxx match> then, it is not 'syntax keyword' anymore. we should stop here
+    if (l:rule =~ '^\s*match')
+        return
+    endif
+
+    " convert it to regex rule
+    let l:rule = substitute(l:rule, 'links\s\+to\s\+.*', '', '')
+    let l:rule = join(split(l:rule), '\|')
+
+    exe 'syn clear ' . a:syntaxGroup
+    exe 'syn match ' . a:syntaxGroup     . ' /\C\<\%(' . l:rule . '\)\>/'
+    exe 'syn match ' . a:syntaxCallGroup . ' /\C\<\%(' . l:rule . '\)\>/ contained'
+endfunction
+
 " function call: identifier \h\i*, followed by whitespaces and '('
-syn match       pythonCall              /\<\h\i*\ze\s*(/    contains=pythonBuiltin,pythonBuiltinFunc,pythonBuiltinType
+" should handle Builtin{Type,Func} as well.
+call s:convert_syntax_keyword_containedin('pythonBuiltinType', 'pythonCallBuiltinType')
+call s:convert_syntax_keyword_containedin('pythonBuiltinFunc', 'pythonCallBuiltinFunc')
+
+syn match       pythonCall              /\<\h\i*\ze\s*(/    contains=pythonCallBuiltinType,pythonCallBuiltinFunc
                                                             \ nextgroup=pythonCallRegion skipwhite keepend
+hi link         pythonCallBuiltinType   pythonCall
+hi link         pythonCallBuiltinFunc   pythonCall
+
 
 " then, match parenthesis. inside it, we contain comma-separated python expressions.
 syn region      pythonCallRegion        contained matchgroup=pythonParamsDelim start=/(/  end=/)/ keepend extend
