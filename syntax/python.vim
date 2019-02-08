@@ -91,7 +91,7 @@ hi! link        pythonCommaError        Error
 
 syn cluster     pythonCallArgument      contains=pythonComment,pythonCall,pythonCallRegion,
                                                   \pythonOperator,pythonExtraOperator,pythonLambdaExpr,pythonRepeat,pythonConditional,
-                                                  \pythonBuiltinObj,pythonBuiltinType,pythonBultinFunc,pythonConstant,
+                                                  \pythonBuiltinObj,pythonBuiltinType,pythonBultinFunc,pythonConstant,pythonFloat,
                                                   \pythonString,pythonNumber,pythonBrackets,pythonSelf,pythonDocstring,
                                                   \skipwhite
 
