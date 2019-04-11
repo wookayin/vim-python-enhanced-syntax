@@ -14,3 +14,8 @@ It currently works as an add-on to [python-mode](https://github.com/python-mode/
 Plug 'python-mode/python-mode', { 'branch': 'develop' } |
   \ Plug 'wookayin/vim-python-enhanced-syntax'
 ```
+
+
+## Compatibility
+
+Requires vim 7.4.2008+ or neovim

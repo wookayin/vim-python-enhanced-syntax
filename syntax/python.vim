@@ -50,6 +50,10 @@ syn match       pythonBrackets          "{[(|)]}" contained skipwhite
 " ====================================
 
 function! s:convert_syntax_keyword_containedin(syntaxGroup, syntaxCallGroup)
+    if !has('*execute')   " vim >= v7.4.2008 or neovim
+        return
+    endif
+
     " https://vi.stackexchange.com/questions/18408/ (courtesy of @user938271)
     let l:rule = execute(printf('syn list %s', a:syntaxGroup))
     let l:rule = matchstr(l:rule, 'xxx\zs.*')
