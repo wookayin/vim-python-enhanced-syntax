@@ -50,7 +50,7 @@ syn match       pythonBrackets          "{[(|)]}" contained skipwhite
 " ====================================
 
 function! s:convert_syntax_keyword_containedin(syntaxGroup, syntaxCallGroup)
-    if !has('*execute')   " vim >= v7.4.2008 or neovim
+    if !exists(':execute')  " vim >= v7.4.2008 or neovim
         return
     endif
 
