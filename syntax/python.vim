@@ -6,11 +6,12 @@
 " Status
 " ------
 " Currently, it works an additional syntax on top of 'python-mode'.
-" Later, it will be a independent and self-reliant syntax support.
+"    see ~/.vim/plugged/python-mode/syntax/python.vim
+" Later on, it will be a independent and self-reliant syntax support.
 
 
 " =======================================
-" General : Python String {{{
+" General : Python Builtins {{{
 " =======================================
 
 " python docstring : treat as special, not String
@@ -23,6 +24,11 @@ syn region pythonString     start=+[bB]\='+ skip=+\\\\\|\\'\|\\$+ excludenl end=
 syn region pythonString     start=+[bB]\="+ skip=+\\\\\|\\"\|\\$+ excludenl end=+"+ end=+$+ keepend extend contains=pythonEscape,pythonEscapeError,@Spell
 syn region pythonString     start=+[bB]\="""+ end=+"""+ keepend extend contains=pythonEscape,pythonEscapeError,pythonDocTest2,pythonSpaceError,@Spell
 syn region pythonString     start=+[bB]\='''+ end=+'''+ keepend extend contains=pythonEscape,pythonEscapeError,pythonDocTest,pythonSpaceError,@Spell
+
+" Python comments correction (:h syn-extend)
+" it must have 'extend' option, so that some region delimieters (e.g. ')')
+" inside comments can be ignored.
+syn match   pythonComment   "#.*$" display contains=pythonTodo,@Spell extend
 
 " }}}
 " =======================================
