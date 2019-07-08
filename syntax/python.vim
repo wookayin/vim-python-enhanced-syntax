@@ -79,8 +79,8 @@ call s:convert_syntax_keyword_containedin('pythonBuiltinFunc', 'pythonCallBuilti
 
 syn match       pythonCall              /\<\h\i*\ze\s*(/    contains=pythonCallBuiltinType,pythonCallBuiltinFunc
                                                             \ nextgroup=pythonCallRegion skipwhite keepend
-hi link         pythonCallBuiltinType   pythonCall
-hi link         pythonCallBuiltinFunc   pythonCall
+hi link         pythonCallBuiltinType   pythonBuiltinType
+hi link         pythonCallBuiltinFunc   pythonBuiltinFunc
 
 
 " then, match parenthesis. inside it, we contain comma-separated python expressions.
