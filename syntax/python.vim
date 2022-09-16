@@ -90,7 +90,7 @@ hi link         pythonCallBuiltinFunc   pythonBuiltinFunc
 
 
 " then, match parenthesis. inside it, we contain comma-separated python expressions.
-syn region      pythonCallRegion        contained matchgroup=pythonParamsDelim start=/(/  end=/)/ keepend extend
+syn region      pythonCallRegion        contained matchgroup=pythonParamsDelim start=/(/  end=/)/ keepend
                                         \ contains=pythonCallComma,pythonCall,@pythonCallArgument,pythonCallArgKeyword
 hi! def link    pythonParamsDelim       Delimiter
 hi              pythonParamsDelim       ctermfg=148     guifg=#afd700
