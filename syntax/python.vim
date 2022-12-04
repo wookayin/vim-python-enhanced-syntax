@@ -30,6 +30,10 @@ syn region pythonString     start=+[bB]\='''+ end=+'''+ keepend extend contains=
 " inside comments can be ignored.
 syn match   pythonComment   "#.*$" display contains=pythonTodo,@Spell extend
 
+" Similarily, pythonDocstring also should have 'extended' to not match ')' in the docstring with pythonCall
+syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?"""+ end=+"""+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError extend
+syn region pythonDocstring  start=+^\s*[uU]\?[rR]\?'''+ end=+'''+ keepend excludenl contains=pythonEscape,@Spell,pythonDoctest,pythonDocTest2,pythonSpaceError extend
+
 " }}}
 " =======================================
 " Python Function & Method Definition {{{
